@@ -140,27 +140,27 @@ function generateUID() {
         .toString(36).substring(2, 15)
 }
 
-function sortByHighestScore () {
-    let QuestionsArray = []
-    let array = []
-    state.users.map((item) => {
-        QuestionsArray.push(item.answeredQuestions + item.createdQuestions)
-    })
-    let sort = QuestionsArray.sort((a, b) => {
-        if (a < b) return 1;
-        if (a > b) return -1;
-        return 0;
-    })
+// function sortByHighestScore () {
+//     let QuestionsArray = []
+//     let array = []
+//     state.users.map((item) => {
+//         QuestionsArray.push(item.answeredQuestions + item.createdQuestions)
+//     })
+//     let sort = QuestionsArray.sort((a, b) => {
+//         if (a < b) return 1;
+//         if (a > b) return -1;
+//         return 0;
+//     })
 
-    sort.forEach((score) => {
+//     sort.forEach((score) => {
 
-        state.users.map((item) => {
-            console.log(item.answeredQuestions + item.createdQuestions)
-            if (score === item.answeredQuestions + item.createdQuestions) {
-                array.push(item)
-                return item
-            }
-        })
-    })
-}
+//         state.users.map((item) => {
+//             console.log(item.answeredQuestions + item.createdQuestions)
+//             if (score === item.answeredQuestions + item.createdQuestions) {
+//                 array.push(item)
+//                 return item
+//             }
+//         })
+//     })
+// }
 

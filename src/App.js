@@ -1,17 +1,16 @@
 import React from "react";
 import { Route, Routes } from 'react-router-dom'
 import Display from "./Display";
+import Home from "./components/Home";
 
 function App() {
-
-
   return (
-    <main className="flex flex-col justify-start items-center w-screen min-h-screen  bg-gray-300">
+    <main>
       <Routes>
         <Route path='/' element={<Display />} />
+        <Route path='/home' element={<Home />} />
       </Routes>
     </main>
-
   );
 }
 

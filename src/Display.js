@@ -1,5 +1,5 @@
 import React from "react";
-import Sign_in from "./Components/Sign_in";
+import Sign_in from "./components/Sign_in";
 
 export default function Display() {
     return (
