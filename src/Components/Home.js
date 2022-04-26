@@ -14,11 +14,11 @@ export default function Home () {
     <>
       <nav>
         <ul className='nav-left'>
-          <li>Home</li>
+          <li style={{backgroundColor: '#410355', color: 'white'}}>Home</li>
           <li>
-            <Link to='add'>Add Poll</Link>
+            <Link className='link' to='add'>Add Poll</Link>
           </li>
-          <Link to='leaderboard'>
+          <Link className='link' to='leaderboard'>
             <li>Leaderboard</li>
           </Link>
         </ul>
@@ -52,6 +52,7 @@ export default function Home () {
                         <h3>{`${question.optionTwo.text.substr(0, 3)}`}...</h3>
                       </div>
                       <Link
+                      className='link'
                         to={`question/${question.id}`}
                         onClick={() => {
                           dispatch({ type: PICKED_QUESTION, payload: question })
@@ -74,6 +75,7 @@ export default function Home () {
                         <h3>{`${question.optionTwo.text.substr(0, 3)}`}...</h3>
                       </div>
                       <Link
+                      className='link'
                         to={`question/${question.id}`}
                         onClick={() => {
                           dispatch({ type: PICKED_QUESTION, payload: question })

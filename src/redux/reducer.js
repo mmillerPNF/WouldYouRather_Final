@@ -47,7 +47,7 @@ export const reducer = (state, action) => {
           text: action.optionTwoText
         }
       }
-      return { ...state, questions: state.questions.concat(newQuestion)}
+      return { ...state, createdQuestions: (state.currentUser[0].createdQuestions++), questions: state.questions.concat(newQuestion)}
     case PICKED_QUESTION:
       return { ...state, currentQuestion: action.payload }
     case ADD_VOTE:
@@ -77,7 +77,7 @@ export const reducer = (state, action) => {
         }
         return {...question}
       })
-      return { ...state, questions: updatedQuestions }
+      return { ...state, answeredQuestions: (state.currentUser[0].answeredQuestions++), questions: updatedQuestions }
     default:
       return state
   }

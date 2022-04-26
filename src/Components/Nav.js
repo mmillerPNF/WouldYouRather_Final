@@ -30,7 +30,7 @@ export default function Nav () {
           <img className="logout-img"src={currentUser[0].avatarURL}  alt="avatar" />
           <h1>{currentUser[0].name}</h1>
         </div>
-        <button className='logout-buttom' onClick={handleLogout}>
+        <button className='logout-button' onClick={handleLogout}>
         Logout
         </button>
       </div>

@@ -18,7 +18,7 @@ export default function Leaderboard () {
   }
   return (
       <div>
-        <Link to='/'>Home</Link>
+        <Link className='link' to='/'>Home</Link>
      {users.map(user => {return (
         <div key={user.id}>
           <img src={user.avatarURL} alt='user avatar' />

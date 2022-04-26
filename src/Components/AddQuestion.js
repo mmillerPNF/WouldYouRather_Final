@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_QUESTIONS } from '../redux/actions'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { NonceProvider } from 'react-select'
 
 export default function AddQuestion () {
   const currentUser = useSelector(state => state.currentUser)
@@ -21,7 +22,9 @@ export default function AddQuestion () {
     navigate('/', {replace: true})
   }
 
-  return (
+  return (<div>
+
+    <Link className='link' to='/'>Home</Link>
     <form onSubmit={handleSubmit}>
       <h2>Would You Rather...</h2>
       <div>
@@ -30,5 +33,6 @@ export default function AddQuestion () {
       </div>
       <button>+ Add</button>
     </form>
+  </div>
   )
 }
