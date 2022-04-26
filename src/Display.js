@@ -1,8 +1,14 @@
 import React from "react";
-import Sign_in from "./components/Sign_in";
-
+import { useSelector } from "react-redux";
+import SignIn from "./components/SignIn";
+import Home from "./components/Home";
 export default function Display() {
+
+    const currentUser = useSelector(state => state.currentUser)
+
     return (
-        <Sign_in />
+        <>
+            {currentUser.length > 0 ? <Home/> : <SignIn/>}
+        </>
     )
 }

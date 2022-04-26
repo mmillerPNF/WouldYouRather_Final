@@ -10,9 +10,9 @@ export default function Sign_in() {
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log(inputValue)
     if (inputValue) {
       dispatch({ type: "LOG_IN", payload: inputValue });
-      navigate("/home");
     }
   };
 
@@ -29,7 +29,6 @@ export default function Sign_in() {
       </div>
       <div className="container-image">
         {users.map(user => {
-          console.log(user);
           return <img key={user.id} src={user.avatarURL} alt="User Avatar" />;
         })}
       </div>
@@ -38,10 +37,10 @@ export default function Sign_in() {
           value={inputValue}
           onChange={event => setInputValue(event.target.value)}
         >
-          <option key={new Date().getTime}hidden={true}>Select User</option>
+          <option key={new Date().getTime()} hidden={true}>Select User</option>
           {availableUsers.map(user => {
             return (
-              <option key={user.id} value={user.id}>
+              <option key={user.value} value={user.name}>
                 {user.display}
               </option>
             );
