@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Display from './Display'
-import Home from './components/Home'
 import ErrorPage from './components/ErrorPage'
 import AddQuestion from './components/AddQuestion'
 // Redux
@@ -15,7 +14,6 @@ function App () {
   const currentQuestion = useSelector(state => state.currentQuestion)
   const dispatch = useDispatch()
   useEffect(()=>{
-    console.log("Use Effect")
     dispatch({type: SHOW_QUESTIONS})
   }, [questions])
   

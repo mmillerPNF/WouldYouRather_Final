@@ -5,16 +5,16 @@ import { useNavigate, Link } from 'react-router-dom'
 import { NonceProvider } from 'react-select'
 
 export default function AddQuestion () {
-  const currentUser = useSelector(state => state.currentUser)
+  //const currentUser = useSelector(state => state.currentUser)
   const [optionOneValue, setOptionOneValue] = useState('')
   const [optionTwoValue, setOptionTwoValue] = useState('')
-  const [question, setQuestion] = useState([])
-  const currentQuestion = useSelector(state => state.currentQuestion)
+  //const [question, setQuestion] = useState([])
+  //const currentQuestion = useSelector(state => state.currentQuestion)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    setQuestion(currentQuestion)
-  }, [])
+  // useEffect(() => {
+  //   setQuestion(currentQuestion)
+  // }, [])
   
   const handleSubmit = event => {
     event.preventDefault()
@@ -22,9 +22,9 @@ export default function AddQuestion () {
     navigate('/', {replace: true})
   }
 
-  return (<div>
-
-    <Link className='link' to='/'>Home</Link>
+  return (
+  <div className='container-add-question'>
+    <Link className='link-add' to='/'>Home</Link>
     <form onSubmit={handleSubmit}>
       <h2>Would You Rather...</h2>
       <div>

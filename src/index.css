@@ -1,3 +1,5 @@
+/*https://noeldelgado.github.io/shadowlord/#8205aa*/
+
 body{
     height: 100vh;
     width: 100vw;
@@ -24,12 +26,12 @@ main{
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: top;
+    justify-content: center;
     text-align: center;
-    border: 2px solid black;
+    border: 3px dashed #a850c4;
     width: 60vw;
     height: 70vh;
-    background-color: grey;
+    background-color: #340244;
 }
 
 .container-image {
@@ -158,11 +160,11 @@ li {
     flex-flow: row-reverse;
     justify-content: space-evenly;
     align-items: center;
-    width: 20vw;
+    width: 30vw;
     height: 100%;
     background-color: #680488;
     color: #dab4e6;
-    -webkit-text-stroke: 1.2px #cd9bdd;
+    -webkit-text-stroke: 1px #cd9bdd;
     font-size: 32px;
 }
 
@@ -179,5 +181,42 @@ li {
     text-decoration: none;
     background-color: #340244;
     color: #dab4e6;
-    -webkit-text-stroke: 1px #680488;
+    -webkit-text-stroke: .5px #680488;
+}
+
+.container-add-question{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #680488;
+    padding: 10px 10px;
+}
+
+.link-add{
+    text-decoration: none;
+    background-color: #340244;
+    color: #dab4e6;
+    font-size: 36px;
+    -webkit-text-stroke: .5px #680488;
+}
+
+.form-sign-in select{
+    width: 100px;
+    height: 33px;
+}
+
+.button-sign-in{
+    width: 100px;
+    height: 33px;
+    font-size: 1.5rem;
+    background-color: #a850c4;
+    color: #dab4e6;
+}
+
+.container-select-submit{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: aqua;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PICKED_QUESTION, LOG_OUT } from '../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
