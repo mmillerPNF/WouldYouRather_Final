@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import {
   LOG_OUT,
   LOG_IN,
@@ -8,7 +9,9 @@ import {
   INCREASE_SCORE
 } from './actions'
 
+
 export const reducer = (state, action) => {
+  
   switch (action.type) {
     case LOG_IN:
       const selectedUser = state.users.filter(
@@ -59,12 +62,13 @@ export const reducer = (state, action) => {
     case ADD_VOTE:
       const updatedQuestions = state.questions.map(question => {
         if (question.id === action.currentQuestionID) {
+          console.log(action.voteValue)
           if (action.voteValue === 'firstOption') {
             return {
               ...question,
               optionOne: {
                 votes: question.optionOne.votes.concat(
-                  action.voteID
+                  action.currentUserID
                 ),
                 text: question.optionOne.text
               }
@@ -74,7 +78,7 @@ export const reducer = (state, action) => {
               ...question,
               optionTwo: {
                 votes: question.optionTwo.votes.concat(
-                  action.voteID
+                  action.currentUserID
                 ),
                 text: question.optionTwo.text
               }
@@ -86,10 +90,10 @@ export const reducer = (state, action) => {
       let ans = state.currentUser.map(a => {
         return {...a, answers: {...a.answers, [action.currentQuestionID]: action.voteValue}}
       })
+      console.log(updatedQuestions)
       return { ...state, questions: updatedQuestions, currentUser: ans }
       case INCREASE_SCORE: {
         let updatedScore = state.users.map((user) => {
-          console.log(user.id, action.payload)
           if(user.id === action.payload) {
             
             return {...user, currentScore: user.currentScore + 1}

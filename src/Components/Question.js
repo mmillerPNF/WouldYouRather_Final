@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ADD_VOTE, INCREASE_SCORE } from '../redux/actions'
 import { useNavigate, Link } from 'react-router-dom'
 import Nav from './Nav'
+import PollResult from './PollResult'
 
 export default function Question () {
   const [voteValue, setVoteValue] = useState('')
+  const [displayResults, setDisplayResults] = useState(false)
+  const userHasVoted = false
   const question = useSelector(state => state.currentQuestion)
   const currentUserID = useSelector(state => state.currentUser[0].id)
   const currentUserScore = useSelector(
@@ -23,22 +26,21 @@ export default function Question () {
         questionTimestamp: question.timestamp, // second payload
         voteValue: voteValue, // third payload
         currentQuestionID: question.id,
-        currentScore: currentUserScore // question payload
+        currentScore: currentUserScore, // question payload
+        currentUserID: currentUserID
       })
       dispatch({ type: INCREASE_SCORE, payload: currentUserID })
+      setDisplayResults(true)
     }
-    navigate('/', { replace: true })
+    //navigate('/', { replace: true })
   }
 
+  question.optionOne.votes.indexOf('')
   return (
     <>
       <Nav />
       <div>
-        <div>
-          <Link className='link' to='/'>
-            Home
-          </Link>
-        </div>
+        <div></div>
         <form onSubmit={handleSubmit}>
           <label>{question.optionOne.text}</label>
           <input
@@ -54,7 +56,16 @@ export default function Question () {
             value='optionTwo'
             onChange={event => setVoteValue(event.target.value)}
           ></input>
-          <button>Submit Answer</button>
+          {displayResults === false && (
+            <div>
+              <button>Submit Answer</button>
+            </div>
+          )}
+          {displayResults && (
+            <div>
+              <PollResult optionOneVotes={question.optionOne.votes.length} optionTwoVotes={question.optionTwo.votes.length} />
+            </div>
+          )}
         </form>
       </div>
     </>

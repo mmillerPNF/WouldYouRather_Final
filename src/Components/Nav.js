@@ -34,7 +34,7 @@ export default function Nav () {
           <img src={currentUser[0].avatarURL} alt='Current user avatar' />
           <h3>{currentUser[0].name}</h3>
           {
-            <button onClick={() => dispatch({ type: LOG_OUT })}>
+            <button onClick={() => { dispatch({ type: LOG_OUT }); navigate('/')}}>
               Sign out
             </button>
           }
