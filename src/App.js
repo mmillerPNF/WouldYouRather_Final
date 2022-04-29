@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Display from './Display'
-import ErrorPage from './components/ErrorPage'
-import AddQuestion from './components/AddQuestion'
+import ErrorPage from './Components/ErrorPage'
+import AddQuestion from './Components/AddQuestion'
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { SHOW_QUESTIONS } from './redux/actions'
-import Question from './components/Question'
-import Leaderboard from './components/Leaderboard'
+import Question from './Components/Question'
+import Leaderboard from './Components/Leaderboard'
 
 function App () {
   const questions = useSelector(state => state.questions)
