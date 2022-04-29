@@ -3,7 +3,7 @@ export const users = [
   {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    currentScore: 6,
+  
     avatarURL:
       'https://icon-library.com/images/free-avatar-icon/free-avatar-icon-10.jpg',
     answers: {
@@ -12,7 +12,8 @@ export const users = [
       'am8ehyc8byjqgar0jgpub9': 'optionTwo',
       'loxhs1bqm25b708cmbf3g': 'optionTwo'
     },
-    questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+    questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9'],
+    currentScore: 6
   },
   {
     id: 'tylermcginnis',

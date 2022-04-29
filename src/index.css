@@ -220,3 +220,10 @@ li {
     align-items: stretch;
     background-color: aqua;
 }
+
+.container-leaderboard {
+    gap: 15px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}

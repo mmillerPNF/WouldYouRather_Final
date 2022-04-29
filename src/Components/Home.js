@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PICKED_QUESTION, LOG_OUT } from '../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
+import Nav from './Nav'
+import { users } from '../Data'
 
 export default function Home () {
   const [toggle, setToggle] = useState(false)
@@ -10,30 +12,17 @@ export default function Home () {
   const currentUser = useSelector(state => state.currentUser)
   const dispatch = useDispatch()
 
+  answeredQuestions.sort((a,b) => {
+    return b.timestamp - a.timestamp
+  })
+  unansweredQuestions.sort((a,b) => {
+    return b.timestamp - a.timestamp
+  })
+
   return (
+   
     <>
-      <nav>
-        <ul className='nav-left'>
-          <li style={{backgroundColor: '#410355', color: 'white'}}>Home</li>
-          <li>
-            <Link className='link' to='add'>Add Poll</Link>
-          </li>
-          <Link className='link' to='leaderboard'>
-            <li>Leaderboard</li>
-          </Link>
-        </ul>
-        <div className='container-signed-in-user'>
-          <div className='container-image-name'>
-            <img src={currentUser[0].avatarURL} alt='Current user avatar' />
-            <h3>{currentUser[0].name}</h3>
-            {
-              <button onClick={() => dispatch({ type: LOG_OUT })}>
-                Sign out
-              </button>
-            }
-          </div>
-        </div>
-      </nav>
+      <Nav/>
       <div className='container-questions'>
         <div className='container-toggle-buttons'>
           <button onClick={() => setToggle(true)}>Answered Questions</button>

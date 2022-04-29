@@ -20,11 +20,11 @@ function App () {
   return (
     <main>
       <Routes>
-        <Route path='/' element={<Display />} />
+        <Route exact path='/' element={<Display />} />
         <Route path='*' element={<ErrorPage />} />
-        <Route path={`question/${currentQuestion.id}`} element={<Question/>}/>
-        <Route path='add' element={<AddQuestion/>} />
-        <Route path='leaderboard' element={<Leaderboard/>}/>
+        <Route exact path={`question/${currentQuestion.id}`} element={<Question/>}/>
+        <Route exact path='/add' element={<AddQuestion/>} />
+        <Route exact path='/leaderboard' element={<Leaderboard/>}/>
       </Routes>
     </main>
   )

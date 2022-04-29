@@ -4,7 +4,8 @@ import {
   SHOW_QUESTIONS,
   ADD_QUESTIONS,
   PICKED_QUESTION,
-  ADD_VOTE
+  ADD_VOTE,
+  INCREASE_SCORE
 } from './actions'
 
 export const reducer = (state, action) => {
@@ -33,9 +34,9 @@ export const reducer = (state, action) => {
         unansweredQuestions: unansweredQuestions
       }
     case ADD_QUESTIONS:
-      console.log(state.currentUser)
       const newQuestion = {
-        id: state.currentUser[0].id,
+        // id: state.currentUser[0].id,
+        id: action.randomId,
         author: state.currentUser[0].name,
         authorURL: state.currentUser[0].avatarURL,
         timestamp: new Date().getTime(),
@@ -48,16 +49,16 @@ export const reducer = (state, action) => {
           text: action.optionTwoText
         }
       }
+      console.log(state.currentUser[0].questions.concat(newQuestion))
       let user = state.currentUser.map((u) => {
-        return {...u, questions: u.questions.concat(action.randomId), currentScore: (u.currentScore++)}
+        return {...u, questions: u.questions.concat(action.randomId)}
       })
-      console.log(user);
       return { ...state, questions: state.questions.concat(newQuestion), currentUser: user, }
     case PICKED_QUESTION:
       return { ...state, currentQuestion: action.payload }
     case ADD_VOTE:
       const updatedQuestions = state.questions.map(question => {
-        if (question.timestamp === action.questionTimestamp) {
+        if (question.id === action.currentQuestionID) {
           if (action.voteValue === 'firstOption') {
             return {
               ...question,
@@ -68,7 +69,7 @@ export const reducer = (state, action) => {
                 text: question.optionOne.text
               }
             }
-          } else if (action.voteValue === 'secondOption') {
+          } else {
             return {
               ...question,
               optionTwo: {
@@ -83,11 +84,22 @@ export const reducer = (state, action) => {
         return {...question}
       })
       let ans = state.currentUser.map(a => {
-        console.log(a);
-        return {...a, answers: {...a.answers, [action.currentQuestionID]: [action.voteValue]}, currentScore: a.currentScore++}
+        return {...a, answers: {...a.answers, [action.currentQuestionID]: action.voteValue}}
       })
-      console.log(ans);
       return { ...state, questions: updatedQuestions, currentUser: ans }
+      case INCREASE_SCORE: {
+        let updatedScore = state.users.map((user) => {
+          console.log(user.id, action.payload)
+          if(user.id === action.payload) {
+            
+            return {...user, currentScore: user.currentScore + 1}
+          }
+          else {
+            return {...user}
+          }
+        })
+        return {...state, users: updatedScore}
+      }
     default:
       return state
   }

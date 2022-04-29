@@ -1,39 +1,45 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux'
+import { LOG_OUT } from '../redux/actions'
 
 export default function Nav () {
-  const currentUser = useSelector(state => state.currentUser);
-  const dispatch = useDispatch();
-  const handleLogout = () => {
-     dispatch({type: 'LOG_OUT'});
-  }
+  const currentUser = useSelector(state => state.currentUser)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   return (
-    <div className='container-navigation-bar'>
-      <div className='container-links'>
-        <div className='navigation'>
-          <Link to='' style={{ color: 'black' }}>
+    <nav>
+      <ul className='nav-left'>
+        <li style={{ backgroundColor: '#410355', color: 'white' }} onClick={()=> navigate('/', {replace: true})}>
+          Home
+          {/* <Link className='link-add' to='/'>
             Home
-          </Link>
-        </div>
-        <div className='navigation'>
-          <Link to='/add'>New Question</Link>
-        </div>
-        <div className='navigation'>
-          <Link to='/leaderboard'>Leaderboard</Link>
+          </Link> */}
+        </li>
+        <li style={{ backgroundColor: '#410355', color: 'white' }} onClick={()=>navigate('/add', {replace: true})}>
+        Add Poll
+          {/* <Link className='link' to='add' replace>
+            Add Poll
+          </Link> */}
+        </li>
+        <li style={{ backgroundColor: '#410355', color: 'white' }} onClick={()=>navigate('/leaderboard', {replace: true})}>Leaderboard</li>
+        {/* <Link className='link' to='leaderboard' replace>
+          <li>Leaderboard</li>
+        </Link> */}
+      </ul>
+      <div className='container-signed-in-user'>
+        <div className='container-image-name'>
+          <img src={currentUser[0].avatarURL} alt='Current user avatar' />
+          <h3>{currentUser[0].name}</h3>
+          {
+            <button onClick={() => dispatch({ type: LOG_OUT })}>
+              Sign out
+            </button>
+          }
         </div>
       </div>
-      <div className='container-logout'>
-        <div className='container-logout-profile'>
-          <img className="logout-img"src={currentUser[0].avatarURL}  alt="avatar" />
-          <h1>{currentUser[0].name}</h1>
-        </div>
-        <button className='logout-button' onClick={handleLogout}>
-        Logout
-        </button>
-      </div>
-    </div>
+    </nav>
   )
 }
