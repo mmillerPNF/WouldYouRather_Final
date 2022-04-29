@@ -33,6 +33,7 @@ export const reducer = (state, action) => {
         unansweredQuestions: unansweredQuestions
       }
     case ADD_QUESTIONS:
+      console.log(state.currentUser)
       const newQuestion = {
         id: state.currentUser[0].id,
         author: state.currentUser[0].name,
@@ -47,28 +48,32 @@ export const reducer = (state, action) => {
           text: action.optionTwoText
         }
       }
-      return { ...state, createdQuestions: (state.currentUser[0].createdQuestions++), questions: state.questions.concat(newQuestion)}
+      let user = state.currentUser.map((u) => {
+        return {...u, questions: u.questions.concat(action.randomId), currentScore: (u.currentScore++)}
+      })
+      console.log(user);
+      return { ...state, questions: state.questions.concat(newQuestion), currentUser: user, }
     case PICKED_QUESTION:
       return { ...state, currentQuestion: action.payload }
     case ADD_VOTE:
       const updatedQuestions = state.questions.map(question => {
-        if (question.id === action.questionID) {
+        if (question.timestamp === action.questionTimestamp) {
           if (action.voteValue === 'firstOption') {
             return {
               ...question,
               optionOne: {
                 votes: question.optionOne.votes.concat(
-                  action.voteValue.substring(1)
+                  action.voteID
                 ),
                 text: question.optionOne.text
               }
             }
-          } else {
+          } else if (action.voteValue === 'secondOption') {
             return {
               ...question,
               optionTwo: {
                 votes: question.optionTwo.votes.concat(
-                  action.voteValue.substring(1)
+                  action.voteID
                 ),
                 text: question.optionTwo.text
               }
@@ -77,7 +82,12 @@ export const reducer = (state, action) => {
         }
         return {...question}
       })
-      return { ...state, answeredQuestions: (state.currentUser[0].answeredQuestions++), questions: updatedQuestions }
+      let ans = state.currentUser.map(a => {
+        console.log(a);
+        return {...a, answers: {...a.answers, [action.currentQuestionID]: [action.voteValue]}, currentScore: a.currentScore++}
+      })
+      console.log(ans);
+      return { ...state, questions: updatedQuestions, currentUser: ans }
     default:
       return state
   }

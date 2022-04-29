@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { ADD_QUESTIONS } from '../redux/actions'
 import { useNavigate, Link } from 'react-router-dom'
-import { NonceProvider } from 'react-select'
+import { generateUID } from '../Data'
 
 export default function AddQuestion () {
-  //const currentUser = useSelector(state => state.currentUser)
   const [optionOneValue, setOptionOneValue] = useState('')
   const [optionTwoValue, setOptionTwoValue] = useState('')
-  //const [question, setQuestion] = useState([])
-  //const currentQuestion = useSelector(state => state.currentQuestion)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   setQuestion(currentQuestion)
-  // }, [])
   
   const handleSubmit = event => {
     event.preventDefault()
-    dispatch({type: ADD_QUESTIONS, optionOneText: optionOneValue, optionTwoText: optionTwoValue,})
+    dispatch({type: ADD_QUESTIONS, optionOneText: optionOneValue, optionTwoText: optionTwoValue, randomId: generateUID()})
     navigate('/', {replace: true})
   }
 
