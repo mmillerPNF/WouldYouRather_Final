@@ -1,21 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_VOTE, INCREASE_SCORE } from '../redux/actions'
-import { useNavigate, Link } from 'react-router-dom'
 import Nav from './Nav'
 import PollResult from './PollResult'
 
 export default function Question () {
   const [voteValue, setVoteValue] = useState('')
   const [displayResults, setDisplayResults] = useState(false)
-  const userHasVoted = false
   const question = useSelector(state => state.currentQuestion)
   const currentUserID = useSelector(state => state.currentUser[0].id)
   const currentUserScore = useSelector(
     state => state.currentUser[0].currentScore
   )
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const handleSubmit = event => {
     event.preventDefault()
