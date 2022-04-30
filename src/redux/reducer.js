@@ -51,18 +51,20 @@ export const reducer = (state, action) => {
           text: action.optionTwoText
         }
       }
-      console.log(state.currentUser[0].questions.concat(newQuestion))
+      console.log("New Question ", newQuestion)
       let user = state.currentUser.map((u) => {
         return {...u, questions: u.questions.concat(action.randomId)}
       })
+      console.log("New current user: ", user)
       return { ...state, questions: state.questions.concat(newQuestion), currentUser: user, }
     case PICKED_QUESTION:
+      console.log("Picked Question: ", action.payload)
       return { ...state, currentQuestion: action.payload }
     case ADD_VOTE:
       const updatedQuestions = state.questions.map(question => {
         if (question.id === action.currentQuestionID) {
-          console.log(action.voteValue)
-          if (action.voteValue === 'firstOption') {
+          console.log("Add Vote action.voteValue: ", action.voteValue)
+          if (action.voteValue === 'optionOne') {
             return {
               ...question,
               optionOne: {
@@ -89,7 +91,7 @@ export const reducer = (state, action) => {
       let ans = state.currentUser.map(a => {
         return {...a, answers: {...a.answers, [action.currentQuestionID]: action.voteValue}}
       })
-      console.log(updatedQuestions)
+      console.log("Add vote updated questions: ", updatedQuestions)
       return { ...state, questions: updatedQuestions, currentUser: ans }
       case INCREASE_SCORE: {
         let updatedScore = state.users.map((user) => {

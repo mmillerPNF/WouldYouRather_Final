@@ -227,3 +227,25 @@ li {
     flex-flow: column;
     align-items: center;
 }
+
+.container-poll-results{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-answer-question{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    background-color: rebeccapurple;
+    margin: 15px;
+    height: 33vh;
+}
+
+.container-results-details{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
