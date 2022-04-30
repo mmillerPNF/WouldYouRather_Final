@@ -12,6 +12,7 @@ import Leaderboard from './Components/Leaderboard'
 function App () {
   const questions = useSelector(state => state.questions)
   const currentQuestion = useSelector(state => state.currentQuestion)
+  const currentUser = useSelector(state => state.currentUser)
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch({type: SHOW_QUESTIONS})
@@ -23,8 +24,8 @@ function App () {
         <Route exact path='/' element={<Display />} />
         <Route path='*' element={<ErrorPage />} />
         <Route exact path={`question/${currentQuestion.id}`} element={<Question/>}/>
-        <Route exact path='/add' element={<AddQuestion/>} />
-        <Route exact path='/leaderboard' element={<Leaderboard/>}/>
+        <Route exact path='/add' element={currentUser === '' ? <AddQuestion/> : <ErrorPage />} />
+        <Route exact path='/leaderboard' element={currentUser === '' ? <Leaderboard/> : <ErrorPage/>}/>
       </Routes>
     </main>
   )

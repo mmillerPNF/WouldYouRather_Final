@@ -7,7 +7,7 @@ export default function ErrorPage () {
   }
   return (
     <div>
-      <h1>Page Not Found</h1>
+      <h1>Page Not Found - You Need To Sign In First</h1>
       <Link to='/'>Back To Sign In</Link>
     </div>
   )
