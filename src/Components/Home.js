@@ -23,12 +23,12 @@ export default function Home () {
    
     <>
       <Nav/>
-      <div className='container-questions'>
         <div className='container-toggle-buttons'>
-          <button onClick={() => setToggle(true)}>Answered Questions</button>
-          <button onClick={() => setToggle(false)}>Unanswered Questions</button>
+          <button className="filter-button" onClick={() => setToggle(true)}>Answered Questions</button>
+          <button className="filter-button" onClick={() => setToggle(false)}>Unanswered Questions</button>
         </div>
-        <div className='container-questions'>
+      <div >
+        <div className='container-question'>
           {toggle
             ? answeredQuestions.map(question => {
                 return (
@@ -53,7 +53,7 @@ export default function Home () {
                   </div>
                 )
               })
-            : unansweredQuestions.map(question => {
+            : unansweredQuestions.length === 0 ? <h2>No Unanswered Questions</h2> : unansweredQuestions.map(question => {
                 return (
                   <div className='individual-question' key={question.timestamp}>
                     <img src={question.authorURL} alt='User avatar' />

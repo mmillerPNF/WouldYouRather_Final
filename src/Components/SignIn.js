@@ -22,7 +22,7 @@ export default function Sign_in () {
   return (
     <div className='container-signin'>
       <div className='header'>
-        <h2 style={{color: 'white'}}>Would You Rather Game!</h2>
+        <h2 style={{color: 'white', fontSize: 32}}>Would You Rather Game!</h2>
         <p style={{color: 'white'}}>Please Sign In</p>
       </div>
       <div className='container-image'>

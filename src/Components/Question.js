@@ -39,36 +39,18 @@ export default function Question () {
       dispatch({ type: INCREASE_SCORE, payload: currentUserID })
       setDisplayResults(true)
     }
-    //navigate('/', { replace: true })
   }
 
-  question.optionOne.votes.indexOf('')
   return (
     <>
       <Nav />
       <div className='container-answer-question'>
-        <form onSubmit={handleSubmit}>
-          <h2>Would You Rather... ?</h2>
-          <label>{question.optionOne.text}</label>
-          <input
-            type='radio'
-            name='option'
-            value='optionOne'
-            onChange={event => setVoteValue(event.target.value)}
-          ></input>
-          <label>{question.optionTwo.text}</label>
-          <input
-            type='radio'
-            name='option'
-            value='optionTwo'
-            onChange={event => setVoteValue(event.target.value)}
-          ></input>
-          {displayResults === false && (
-            <div>
-              <button>Submit Answer</button>
-            </div>
-          )}
-          {displayResults && (
+        <form
+          className='answer-question-form'
+          onSubmit={handleSubmit}
+          hidden={true}
+        >
+          {displayResults ? (
             <div>
               {console.log('Question for display results: ', currentQuestions)}
               {console.log('Correct Question?', pollableQuestion)}
@@ -77,6 +59,36 @@ export default function Question () {
                 optionTwoVotes={pollableQuestion[0].optionTwo.votes.length}
                 userVote={voteValue}
               />
+            </div>
+          ) : (
+            <div>
+            <h2>Would You Rather... ?</h2>
+              <div className='container-question-options'>
+                <label style={{ fontSize: '19px' }}>
+                  {question.optionOne.text}
+                </label>
+
+                <input
+                  type='radio'
+                  name='option'
+                  value='optionOne'
+                  onChange={event => setVoteValue(event.target.value)}
+                ></input>
+              </div>
+              <div className='container-question-options'>
+                <label style={{ fontSize: '19px' }}>
+                  {question.optionTwo.text}
+                </label>
+                <input
+                  type='radio'
+                  name='option'
+                  value='optionTwo'
+                  onChange={event => setVoteValue(event.target.value)}
+                ></input>
+              </div>
+              <div className='container-submit-answer-button'>
+                <button>Submit Answer</button>
+              </div>
             </div>
           )}
         </form>
